@@ -8,7 +8,6 @@ import com.safe2pay.DTO.Merchant.Merchant;
 import com.safe2pay.DTO.Merchant.MerchantSplit;
 import com.safe2pay.DTO.Merchant.MerchantSplitTax;
 import com.safe2pay.DTO.Plan.Plan;
-import com.safe2pay.DTO.Plan.PlanFrequence;
 import com.safe2pay.DTO.Response.ResponseSafe2Pay;
 import java.util.ArrayList;
 import junit.framework.TestCase;
@@ -29,7 +28,7 @@ public class MarketplaceTest extends TestCase {
     protected void setUp() {
 
         Config enviroment = new Config();
-        enviroment.SetEnviroment("5A3A044DE838403F9566BDFBEE9DE763");
+        enviroment.SetEnviroment("x-api-key");
     }
 
     @Test

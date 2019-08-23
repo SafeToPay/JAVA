@@ -22,7 +22,7 @@ public class PlanTest extends TestCase {
     protected void setUp() {
 
         Config enviroment = new Config();
-        enviroment.SetEnviroment("5A3A044DE838403F9566BDFBEE9DE763");
+        enviroment.SetEnviroment("x-api-key");
     }
 
     @Test

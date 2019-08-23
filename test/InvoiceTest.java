@@ -1,15 +1,9 @@
 
 import com.safe2pay.API.InvoiceAPI;
-import com.safe2pay.API.MarketplaceAPI;
 import com.safe2pay.CORE.Config;
 import com.safe2pay.DTO.Address.Address;
-import com.safe2pay.DTO.Bank.BankData;
 import com.safe2pay.DTO.Customer.Customer;
 import com.safe2pay.DTO.General.Product;
-import com.safe2pay.DTO.Merchant.Merchant;
-import com.safe2pay.DTO.Merchant.MerchantSplit;
-import com.safe2pay.DTO.Merchant.MerchantSplitTax;
-import com.safe2pay.DTO.Payment.PaymentMethod;
 import com.safe2pay.DTO.Response.ResponseSafe2Pay;
 import com.safe2pay.DTO.SingleSale.SingleSale;
 import com.safe2pay.DTO.SingleSale.SingleSalePaymentMethod;
@@ -32,7 +26,7 @@ public class InvoiceTest extends TestCase {
     protected void setUp() {
 
         Config enviroment = new Config();
-        enviroment.SetEnviroment("5A3A044DE838403F9566BDFBEE9DE763");
+        enviroment.SetEnviroment("x-api-key");
     }
 
     @Test
