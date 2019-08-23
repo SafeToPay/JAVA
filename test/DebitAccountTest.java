@@ -1,9 +1,7 @@
 
-import com.safe2pay.API.TokenizationAPI;
+import com.safe2pay.API.DebitAccountAPI;
 import com.safe2pay.API.TransactionAPI;
-import com.safe2pay.CORE.Client;
 import com.safe2pay.CORE.Config;
-import com.safe2pay.DTO.Payment.CreditCard;
 import com.safe2pay.DTO.Response.ResponseSafe2Pay;
 import junit.framework.TestCase;
 import static junit.framework.TestCase.assertNotNull;
@@ -18,7 +16,9 @@ import org.junit.Test;
  *
  * @author lucas.silva
  */
-public class TokenizationTest extends TestCase {
+
+  /*
+public class DebitAccountTest extends TestCase {
 
     protected void setUp() {
 
@@ -26,20 +26,33 @@ public class TokenizationTest extends TestCase {
         enviroment.SetEnviroment("5A3A044DE838403F9566BDFBEE9DE763");
     }
 
+  
     @Test
-    public void testCreate() {
+    public void testGet() {
 
-        CreditCard credit = new CreditCard();
-        credit.setHolder("João da Silva");
-        credit.setCardNumber("4024007153763191");
-        credit.setExpirationDate("12/2019");
-        credit.setSecurityCode("241");
+        int Id = 8;
 
-        ResponseSafe2Pay response = TokenizationAPI.Create(credit);
+        ResponseSafe2Pay response = DebitAccountAPI.Get(Id);
 
         assertEquals(response.HasError, false);
 
         assertNotNull(response);
 
     }
+
+    @Test
+    public void testCancel() {
+
+        int Id = 8;
+
+        ResponseSafe2Pay response = DebitAccountAPI.Cancel(Id);
+
+        assertEquals(response.HasError, false);
+
+        assertNotNull(response);
+
+    }
+ 
+
 }
+   */

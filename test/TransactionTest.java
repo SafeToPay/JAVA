@@ -1,6 +1,7 @@
 
 import com.safe2pay.API.TransactionAPI;
 import com.safe2pay.CORE.Client;
+import com.safe2pay.DTO.Response.ResponseSafe2Pay;
 import junit.framework.TestCase;
 import org.junit.Test;
 
@@ -19,16 +20,21 @@ import org.junit.Test;
 public class TransactionTest extends TestCase {
     
     protected void setUp() {
-       Client.SetEnviroment("5A3A044DE838403F9566BDFBEE9DE763");
+       Client.SetEnviroment("x-api-key");
     }
     
 @Test
     public void testGet() {
         
         int Id = 852920;
+        
+        
 
-        Object response = TransactionAPI.Get(Id);
-             
+        ResponseSafe2Pay response = TransactionAPI.Get(Id);
+        
+           
+        assertEquals(response.HasError, false);
+        
         assertNotNull(response);
 
     }

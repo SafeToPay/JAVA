@@ -3,6 +3,7 @@ import com.safe2pay.API.SubscriptionAPI;
 import com.safe2pay.CORE.Config;
 import com.safe2pay.DTO.Address.Address;
 import com.safe2pay.DTO.Customer.Customer;
+import com.safe2pay.DTO.Response.ResponseSafe2Pay;
 import com.safe2pay.DTO.Subscription.Subscription;
 import junit.framework.TestCase;
 import static junit.framework.TestCase.assertNotNull;
@@ -12,6 +13,7 @@ import org.junit.Test;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  *
  * @author lucas.silva
@@ -28,7 +30,7 @@ public class SubscriptionTest extends TestCase {
     public void testAdd() {
 
         Subscription subscription = new Subscription();
-              
+
         subscription.setChargeDate("2019-06-30");
         subscription.setPlan(156);
         subscription.setIsSandbox(true);
@@ -39,9 +41,11 @@ public class SubscriptionTest extends TestCase {
             private String BankAccountDigit;
             private String BankAccount;
             private Object Bank;
+
             {
                 Bank = new Object() {
                     private String Code;
+
                     {
                         Code = "136";
                     }
@@ -73,7 +77,9 @@ public class SubscriptionTest extends TestCase {
             }
         });
 
-        Object response = SubscriptionAPI.Add(subscription);
+        ResponseSafe2Pay response = SubscriptionAPI.Add(subscription);
+
+        assertEquals(response.HasError, true);
 
         assertNotNull(response);
     }
@@ -83,7 +89,9 @@ public class SubscriptionTest extends TestCase {
 
         int Id = 825;
 
-        Object response = SubscriptionAPI.Get(Id);
+        ResponseSafe2Pay response = SubscriptionAPI.Get(Id);
+
+        assertEquals(response.HasError, true);
 
         assertNotNull(response);
 
