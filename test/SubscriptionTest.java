@@ -34,7 +34,7 @@ public class SubscriptionTest extends TestCase {
 
         Subscription subscription = new Subscription();
 
-        subscription.setPaymentMethod("1");
+        subscription.setPaymentMethod(1);
 
         subscription.setEmails(new ArrayList<String>() {
             {
@@ -57,7 +57,7 @@ public class SubscriptionTest extends TestCase {
                         setStateInitials("RS");
                         setCityName("Porto Alegre");
                         setCountryName("Brasil");
-                        setCity(new City(){
+                        setCity(new City() {
                             {
                                 setCodeIBGE("4323002");
                             }
@@ -69,7 +69,7 @@ public class SubscriptionTest extends TestCase {
 
         int id = 4402;
 
-        ResponseSafe2PayRecurrence response = SubscriptionAPI.Add(id,subscription);
+        ResponseSafe2PayRecurrence response = SubscriptionAPI.Add(id, subscription);
 
         assertEquals(response.success, true);
 
@@ -83,38 +83,38 @@ public class SubscriptionTest extends TestCase {
 
         ResponseSafe2PayRecurrence response = SubscriptionAPI.Get(Id);
 
-         assertEquals(response.success, true);
+        assertEquals(response.success, true);
 
-         assertNotNull(response);
+        assertNotNull(response);
 
-         }
+    }
 
-         public void testList(){
+    public void testList() {
 
-         int pageNumber = 1;
-         int rowsPage = 10 ;
-         String CustomerName = "Teste";
-         String Status = "Ativo";
-         String InitialDate = "12-02-2022";
-         String EndDate = "12-10-2022";
-         int IdPlan = 4019;
+        int pageNumber = 1;
+        int rowsPage = 10;
+        String CustomerName = "Teste";
+        String Status = "Ativo";
+        String InitialDate = "12-02-2022";
+        String EndDate = "12-10-2022";
+        int IdPlan = 4019;
 
+        ResponseSafe2PayRecurrence response = SubscriptionAPI.List(pageNumber, rowsPage, CustomerName, Status,
+                InitialDate, EndDate, IdPlan);
 
-             ResponseSafe2PayRecurrence response = SubscriptionAPI.List(pageNumber, rowsPage, CustomerName, Status, InitialDate, EndDate, IdPlan);
+        assertEquals(response.success, true);
 
-         assertEquals(response.success, true);
+        assertNotNull(response);
 
-         assertNotNull(response);
+    }
 
-         }
+    public void testDisable() {
 
-         public void testDisable(){
+        int Id = 15649;
 
-         int Id = 10532;
+        ResponseSafe2PayRecurrence response = SubscriptionAPI.DisableSubscription(Id);
 
-             ResponseSafe2PayRecurrence response = SubscriptionAPI.DisableSubscription(Id);
-
-         assertEquals(response.success, true);
+        assertEquals(response.success, true);
 
         assertNotNull(response);
 
@@ -125,16 +125,15 @@ public class SubscriptionTest extends TestCase {
         Subscription simulation = new Subscription();
 
         simulation.setSubscriptionDate("2022-03-25");
-        simulation.setPaymentMethod("1");
+        simulation.setPaymentMethod(1);
         simulation.setPlan(new Plan() {
             {
                 setPlanFrequence(1);
-                setPlanOption(1);
                 setName("Teste");
                 setDescription("Teste");
-                setAmount(10.00);
+                setAmount(10);
                 setSubscriptionTax(0);
-                setSubscriptionLimit(2);
+                setSubscriptionLimit(0);
                 setChargeDay(5);
                 setDaysChurn(0);
                 setDaysChurnAlert(0);
@@ -149,12 +148,13 @@ public class SubscriptionTest extends TestCase {
                 setPenaltyAmount(0);
                 setInterestAmount(0);
                 setMessage("String");
-                setDiscountType(1);
+                setDiscountType(0);
                 setDiscountDue(0);
                 setDiscountAmount(0);
                 setBillingCycle(2);
                 setDaysBeforeChargeDateExpiration(0);
-                setDayOfWeek(2);
+                setDayOfWeek(0);
+                setPlanOption(1);
             }
         });
 
@@ -192,4 +192,3 @@ public class SubscriptionTest extends TestCase {
     }
 
 }
-

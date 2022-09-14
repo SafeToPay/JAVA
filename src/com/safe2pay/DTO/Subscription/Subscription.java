@@ -1,6 +1,5 @@
 package com.safe2pay.DTO.Subscription;
 
-
 import com.safe2pay.DTO.Customer.Customer;
 import com.safe2pay.DTO.Plan.Plan;
 import com.safe2pay.DTO.Plan.PlanFrequence;
@@ -13,12 +12,11 @@ public class Subscription {
     private int Id;
 
     private Plan Plan;
-    private String PaymentMethod;
+    private int PaymentMethod;
     private Customer Customer;
     private String ChargeDate;
     private ArrayList<String> Emails;
     private String SubscriptionDate;
-    private int SubscriptionTotal;
     private String Token;
 
     public int getId() {
@@ -37,11 +35,11 @@ public class Subscription {
         this.Plan = Plan;
     }
 
-    public String getPaymentMethod() {
+    public int getPaymentMethod() {
         return PaymentMethod;
     }
 
-    public void setPaymentMethod(String PaymentMethod) {
+    public void setPaymentMethod(int PaymentMethod) {
         this.PaymentMethod = PaymentMethod;
     }
 
@@ -69,23 +67,20 @@ public class Subscription {
         this.Token = Token;
     }
 
-    public ArrayList<String> getEmails() {return Emails; }
+    public ArrayList<String> getEmails() {
+        return Emails;
+    }
 
-    public void setEmails(ArrayList<String> Emails) {this.Emails = Emails;}
+    public void setEmails(ArrayList<String> Emails) {
+        this.Emails = Emails;
+    }
 
     public String getSubscriptionDate() {
         return SubscriptionDate;
     }
+
     public void setSubscriptionDate(String SubscriptionDate) {
         this.SubscriptionDate = SubscriptionDate;
-    }
-
-    public int getSubscriptionTotal() {
-        return SubscriptionTotal;
-    }
-
-    public void setSubscriptionTotal(int SubscriptionTotal) {
-        this.SubscriptionTotal = SubscriptionTotal;
     }
 
 }
