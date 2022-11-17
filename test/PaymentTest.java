@@ -30,7 +30,7 @@ public class PaymentTest extends TestCase {
     protected void setUp() {
 
         Config enviroment = new Config();
-        enviroment.SetEnviroment("58D772128EB247E5A34F527B5CA76325");
+        enviroment.SetEnviroment("x-api-key");
     }
 
     @Test
@@ -46,26 +46,26 @@ public class PaymentTest extends TestCase {
     @Test
     public void testBankSlip() {
 
-        //Inicializar método de pagamento
+        // Inicializar método de pagamento
         Transaction payload = new Transaction();
-        //Ambiente de homologação
+        // Ambiente de homologação
         payload.setIsSandbox(true);
-        //Descrição geral 
+        // Descrição geral
         payload.setApplication("Teste SDK PHP");
-        //Nome do vendedor
+        // Nome do vendedor
         payload.setVendor("João da Silva");
-        //Url de callback
+        // Url de callback
         payload.setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
-        //Código da forma de pagamento
+        // Código da forma de pagamento
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
-        // 10 - Débito em conta 
+        // 4 - Cartão de débito
+        // 10 - Débito em conta
         payload.setPaymentMethod("1");
 
-        //Informa o objeto de pagamento
-        //Objeto de pagamento - para boleto bancário
+        // Informa o objeto de pagamento
+        // Objeto de pagamento - para boleto bancário
         payload.setPaymentObject(new BankSlip() {
             {
                 setDueDate("16/09/2019");
@@ -84,7 +84,7 @@ public class PaymentTest extends TestCase {
             }
         });
 
-        //Lista de produtos incluídos na cobrança
+        // Lista de produtos incluídos na cobrança
         payload.setProducts(new ArrayList<Product>() {
             {
                 add(new Product("001", "Teste 1", 10, 1.99));
@@ -93,7 +93,7 @@ public class PaymentTest extends TestCase {
             }
         });
 
-        //Dados do cliente
+        // Dados do cliente
         payload.setCustomer(new Customer() {
             {
                 setName("João da Silva");
@@ -123,26 +123,26 @@ public class PaymentTest extends TestCase {
     @Test
     public void testCreditCard() {
 
-        //Inicializar método de pagamento
+        // Inicializar método de pagamento
         Transaction payload = new Transaction();
-        //Ambiente de homologação
+        // Ambiente de homologação
         payload.setIsSandbox(true);
-        //Descrição geral 
+        // Descrição geral
         payload.setApplication("Teste SDK PHP");
-        //Nome do vendedor
+        // Nome do vendedor
         payload.setVendor("João da Silva");
-        //Url de callback
+        // Url de callback
         payload.setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
-        //Código da forma de pagamento
+        // Código da forma de pagamento
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
-        // 10 - Débito em conta 
+        // 4 - Cartão de débito
+        // 10 - Débito em conta
         payload.setPaymentMethod("2");
 
-        //Informa o objeto de pagamento
-        //Objeto de pagamento - para boleto bancário
+        // Informa o objeto de pagamento
+        // Objeto de pagamento - para boleto bancário
         payload.setPaymentObject(new CreditCard() {
             {
                 setHolder("João da Silva");
@@ -152,7 +152,7 @@ public class PaymentTest extends TestCase {
             }
         });
 
-        //Lista de produtos incluídos na cobrança
+        // Lista de produtos incluídos na cobrança
         payload.setProducts(new ArrayList<Product>() {
             {
                 add(new Product("001", "Teste 1", 10, 1.99));
@@ -161,7 +161,7 @@ public class PaymentTest extends TestCase {
             }
         });
 
-        //Dados do cliente
+        // Dados do cliente
         payload.setCustomer(new Customer() {
             {
                 setName("João da Silva");
@@ -191,25 +191,25 @@ public class PaymentTest extends TestCase {
     @Test
     public void testCryptoCurrency() {
 
-        //Inicializar método de pagamento
+        // Inicializar método de pagamento
         Transaction payload = new Transaction();
-        //Ambiente de homologação
+        // Ambiente de homologação
         payload.setIsSandbox(true);
-        //Descrição geral 
+        // Descrição geral
         payload.setApplication("Teste SDK PHP");
-        //Nome do vendedor
+        // Nome do vendedor
         payload.setVendor("João da Silva");
-        //Url de callback
+        // Url de callback
         payload.setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
-        //Código da forma de pagamento
+        // Código da forma de pagamento
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
-        // 10 - Débito em conta 
+        // 4 - Cartão de débito
+        // 10 - Débito em conta
         payload.setPaymentMethod("3");
 
-        //Lista de produtos incluídos na cobrança
+        // Lista de produtos incluídos na cobrança
         payload.setProducts(new ArrayList<Product>() {
             {
                 add(new Product("001", "Teste 1", 10, 1.99));
@@ -218,7 +218,7 @@ public class PaymentTest extends TestCase {
             }
         });
 
-        //Dados do cliente
+        // Dados do cliente
         payload.setCustomer(new Customer() {
             {
                 setName("João da Silva");
@@ -248,26 +248,26 @@ public class PaymentTest extends TestCase {
     @Test
     public void testDebitCard() {
 
-        //Inicializar método de pagamento
+        // Inicializar método de pagamento
         Transaction payload = new Transaction();
-        //Ambiente de homologação
+        // Ambiente de homologação
         payload.setIsSandbox(true);
-        //Descrição geral 
+        // Descrição geral
         payload.setApplication("Teste SDK PHP");
-        //Nome do vendedor
+        // Nome do vendedor
         payload.setVendor("João da Silva");
-        //Url de callback
+        // Url de callback
         payload.setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
-        //Código da forma de pagamento
+        // Código da forma de pagamento
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
-        // 10 - Débito em conta 
+        // 4 - Cartão de débito
+        // 10 - Débito em conta
         payload.setPaymentMethod("4");
 
-        //Informa o objeto de pagamento
-        //Objeto de pagamento - para boleto bancário
+        // Informa o objeto de pagamento
+        // Objeto de pagamento - para boleto bancário
         payload.setPaymentObject(new CreditCard() {
             {
                 setHolder("João da Silva");
@@ -277,7 +277,7 @@ public class PaymentTest extends TestCase {
             }
         });
 
-        //Lista de produtos incluídos na cobrança
+        // Lista de produtos incluídos na cobrança
         payload.setProducts(new ArrayList<Product>() {
             {
                 add(new Product("001", "Teste 1", 10, 1.99));
@@ -286,7 +286,7 @@ public class PaymentTest extends TestCase {
             }
         });
 
-        //Dados do cliente
+        // Dados do cliente
         payload.setCustomer(new Customer() {
             {
                 setName("João da Silva");
@@ -316,25 +316,25 @@ public class PaymentTest extends TestCase {
     @Test
     public void testCarnet() {
 
-        //Inicializar método de pagamento
+        // Inicializar método de pagamento
         Transaction payload = new Transaction();
-        //Ambiente de homologação
+        // Ambiente de homologação
         payload.setIsSandbox(true);
-        //Descrição geral 
+        // Descrição geral
         payload.setApplication("Teste SDK PHP");
-        //Nome do vendedor
+        // Nome do vendedor
         payload.setVendor("João da Silva");
-        //Url de callback
+        // Url de callback
         payload.setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
-        //Código da forma de pagamento
+        // Código da forma de pagamento
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
-        // 10 - Débito em conta 
+        // 4 - Cartão de débito
+        // 10 - Débito em conta
         payload.setPaymentMethod("1");
 
-        //Adiciona boletos do carnê
+        // Adiciona boletos do carnê
         Carnet carnet = new Carnet();
         carnet.setMessage("Teste");
         carnet.setPenaltyAmount(10);
@@ -400,7 +400,7 @@ public class PaymentTest extends TestCase {
             }
         });
 
-        //Lista de produtos incluídos na cobrança
+        // Lista de produtos incluídos na cobrança
         payload.setProducts(new ArrayList<Product>() {
             {
                 add(new Product("001", "Teste 1", 10, 1.99));
@@ -409,7 +409,7 @@ public class PaymentTest extends TestCase {
             }
         });
 
-        //Dados do cliente
+        // Dados do cliente
         payload.setCustomer(new Customer() {
             {
                 setName("João da Silva");
@@ -452,23 +452,23 @@ public class PaymentTest extends TestCase {
 
         for (int i = 0; i < 10; i++) {
 
-            //Inicializar método de pagamento
+            // Inicializar método de pagamento
             payload = new Transaction();
-            //Ambiente de homologação
+            // Ambiente de homologação
             payload.setIsSandbox(true);
-            //Descrição geral 
+            // Descrição geral
             payload.setApplication("Teste SDK PHP");
-            //Nome do vendedor
+            // Nome do vendedor
             payload.setVendor("João da Silva");
-        //Código da forma de pagamento
+            // Código da forma de pagamento
             // 1 - Boleto bancário
             // 2 - Cartão de crédito
             // 3 - Criptomoeda
-            // 4 - Cartão de débito 
-            // 10 - Débito em conta 
+            // 4 - Cartão de débito
+            // 10 - Débito em conta
             payload.setPaymentMethod("1");
 
-            //Adiciona boletos do carnê
+            // Adiciona boletos do carnê
             Carnet carnet = new Carnet();
             carnet.setMessage("Teste");
             carnet.setPenaltyAmount(10);
@@ -534,7 +534,7 @@ public class PaymentTest extends TestCase {
                 }
             });
 
-            //Lista de produtos incluídos na cobrança
+            // Lista de produtos incluídos na cobrança
             payload.setProducts(new ArrayList<Product>() {
                 {
                     add(new Product("001", "Teste 1", 10, 1.99));
@@ -543,7 +543,7 @@ public class PaymentTest extends TestCase {
                 }
             });
 
-            //Dados do cliente
+            // Dados do cliente
             payload.setCustomer(new Customer() {
                 {
                     setName("João da Silva");
@@ -569,7 +569,7 @@ public class PaymentTest extends TestCase {
 
         lote.setItems(transactions);
 
-            ResponseSafe2Pay response = PaymentAPI.CarnetLot(lote);
+        ResponseSafe2Pay response = PaymentAPI.CarnetLot(lote);
 
         assertEquals(response.HasError, false);
 
@@ -577,83 +577,83 @@ public class PaymentTest extends TestCase {
 
     }
     /*
-     @Test
-     public void testDebitAccount() {
-
-     //Inicializar método de pagamento
-     Transaction payload = new Transaction();
-     //Ambiente de homologação
-     payload.setIsSandbox(true);
-     //Descrição geral 
-     payload.setApplication("Teste SDK PHP");
-     //Nome do vendedor
-     payload.setVendor("João da Silva");
-     //Url de callback
-     payload.setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
-     //Código da forma de pagamento
-     // 1 - Boleto bancário
-     // 2 - Cartão de crédito
-     // 3 - Criptomoeda
-     // 4 - Cartão de débito 
-     // 10 - Débito em conta 
-     payload.setPaymentMethod("10");
-
-     BankData bankData = new BankData();
-
-     payload.setPaymentObject(new Object() {
-     private BankData BankData;
-     private String DueDate;
-
-     {
-     DueDate = "2019-05-30";
-     BankData = new BankData() {
-     {
-     setBank("033");
-     setBankAgency("0435");
-     setBankAgencyDigit("1");
-     setBankAccount("7879487");
-     setBankAccountDigit("2");
-
-     }
-     };
-     }
-     });
-
-     //Lista de produtos incluídos na cobrança
-     payload.setProducts(new ArrayList<Product>() {
-     {
-     add(new Product("001", "Teste 1", 10, 1.99));
-     add(new Product("002", "Teste 2", 3, 2.50));
-     add(new Product("003", "Teste 3", 7, 1));
-     }
-     });
-
-     //Dados do cliente
-     payload.setCustomer(new Customer() {
-     {
-     setName("João da Silva");
-     setIdentity("54557795000162");
-     setEmail("safe2pay@safe2pay.com.br");
-     setAddress(new Address() {
-     {
-     setZipCode("90670090");
-     setStreet("Logradouro");
-     setNumber("123");
-     setDistrict("Higienopolis");
-     setStateInitials("RS");
-     setCityName("Porto Alegre");
-     setCountryName("Brasil");
-     }
-     });
-     }
-     });
-
-     ResponseSafe2Pay response = PaymentAPI.DebitAccount(payload);
-
-     assertEquals(response.HasError, false);
-
-     assertNotNull(response);
-     }
+     * @Test
+     * public void testDebitAccount() {
+     * 
+     * //Inicializar método de pagamento
+     * Transaction payload = new Transaction();
+     * //Ambiente de homologação
+     * payload.setIsSandbox(true);
+     * //Descrição geral
+     * payload.setApplication("Teste SDK PHP");
+     * //Nome do vendedor
+     * payload.setVendor("João da Silva");
+     * //Url de callback
+     * payload.setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
+     * //Código da forma de pagamento
+     * // 1 - Boleto bancário
+     * // 2 - Cartão de crédito
+     * // 3 - Criptomoeda
+     * // 4 - Cartão de débito
+     * // 10 - Débito em conta
+     * payload.setPaymentMethod("10");
+     * 
+     * BankData bankData = new BankData();
+     * 
+     * payload.setPaymentObject(new Object() {
+     * private BankData BankData;
+     * private String DueDate;
+     * 
+     * {
+     * DueDate = "2019-05-30";
+     * BankData = new BankData() {
+     * {
+     * setBank("033");
+     * setBankAgency("0435");
+     * setBankAgencyDigit("1");
+     * setBankAccount("7879487");
+     * setBankAccountDigit("2");
+     * 
+     * }
+     * };
+     * }
+     * });
+     * 
+     * //Lista de produtos incluídos na cobrança
+     * payload.setProducts(new ArrayList<Product>() {
+     * {
+     * add(new Product("001", "Teste 1", 10, 1.99));
+     * add(new Product("002", "Teste 2", 3, 2.50));
+     * add(new Product("003", "Teste 3", 7, 1));
+     * }
+     * });
+     * 
+     * //Dados do cliente
+     * payload.setCustomer(new Customer() {
+     * {
+     * setName("João da Silva");
+     * setIdentity("54557795000162");
+     * setEmail("safe2pay@safe2pay.com.br");
+     * setAddress(new Address() {
+     * {
+     * setZipCode("90670090");
+     * setStreet("Logradouro");
+     * setNumber("123");
+     * setDistrict("Higienopolis");
+     * setStateInitials("RS");
+     * setCityName("Porto Alegre");
+     * setCountryName("Brasil");
+     * }
+     * });
+     * }
+     * });
+     * 
+     * ResponseSafe2Pay response = PaymentAPI.DebitAccount(payload);
+     * 
+     * assertEquals(response.HasError, false);
+     * 
+     * assertNotNull(response);
+     * }
      */
 
     @Test

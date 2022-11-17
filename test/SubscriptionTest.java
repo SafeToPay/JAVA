@@ -29,7 +29,7 @@ public class SubscriptionTest extends TestCase {
     protected void setUp() {
 
         Config enviroment = new Config();
-        enviroment.SetEnviroment("58D772128EB247E5A34F527B5CA76325");
+        enviroment.SetEnviroment("x-api-key");
     }
 
     @Test
@@ -60,7 +60,7 @@ public class SubscriptionTest extends TestCase {
                         setStateInitials("RS");
                         setCityName("Porto Alegre");
                         setCountryName("Brasil");
-                        setCity(new City(){
+                        setCity(new City() {
                             {
                                 setCodeIBGE("4323002");
                             }
@@ -72,7 +72,7 @@ public class SubscriptionTest extends TestCase {
 
         int id = 4402;
 
-        ResponseSafe2PayRecurrence response = SubscriptionAPI.Add(id,subscription);
+        ResponseSafe2PayRecurrence response = SubscriptionAPI.Add(id, subscription);
 
         assertEquals(response.success, true);
 
@@ -86,38 +86,38 @@ public class SubscriptionTest extends TestCase {
 
         ResponseSafe2PayRecurrence response = SubscriptionAPI.Get(Id);
 
-         assertEquals(response.success, true);
+        assertEquals(response.success, true);
 
-         assertNotNull(response);
+        assertNotNull(response);
 
-         }
+    }
 
-         public void testList(){
+    public void testList() {
 
-         int pageNumber = 1;
-         int rowsPage = 10 ;
-         String CustomerName = "Teste";
-         String Status = "Ativo";
-         String InitialDate = "12-02-2022";
-         String EndDate = "12-10-2022";
-         int IdPlan = 4019;
+        int pageNumber = 1;
+        int rowsPage = 10;
+        String CustomerName = "Teste";
+        String Status = "Ativo";
+        String InitialDate = "12-02-2022";
+        String EndDate = "12-10-2022";
+        int IdPlan = 4019;
 
+        ResponseSafe2PayRecurrence response = SubscriptionAPI.List(pageNumber, rowsPage, CustomerName, Status,
+                InitialDate, EndDate, IdPlan);
 
-             ResponseSafe2PayRecurrence response = SubscriptionAPI.List(pageNumber, rowsPage, CustomerName, Status, InitialDate, EndDate, IdPlan);
+        assertEquals(response.success, true);
 
-         assertEquals(response.success, true);
+        assertNotNull(response);
 
-         assertNotNull(response);
+    }
 
-         }
+    public void testDisable() {
 
-         public void testDisable(){
+        int Id = 17483;
 
-         int Id = 17483;
+        ResponseSafe2PayRecurrence response = SubscriptionAPI.DisableSubscription(Id);
 
-             ResponseSafe2PayRecurrence response = SubscriptionAPI.DisableSubscription(Id);
-
-         assertEquals(response.success, true);
+        assertEquals(response.success, true);
 
         assertNotNull(response);
 
@@ -172,9 +172,11 @@ public class SubscriptionTest extends TestCase {
     public void testUpdateTokenCard() throws JsonProcessingException {
 
         int Id = 17626;
-        var values = new HashMap<String, String>() {{
-            put("Token", "adf1f7e73cf344bebba715799cf3b1cc");
-        }};
+        var values = new HashMap<String, String>() {
+            {
+                put("Token", "adf1f7e73cf344bebba715799cf3b1cc");
+            }
+        };
 
         var objectMapper = new ObjectMapper();
         String requestBody = objectMapper
@@ -201,4 +203,3 @@ public class SubscriptionTest extends TestCase {
     }
 
 }
-
