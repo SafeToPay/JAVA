@@ -20,7 +20,7 @@ public class PlanTest extends TestCase {
     protected void setUp() {
 
         Config enviroment = new Config();
-        enviroment.SetEnviroment("x-api-key");
+        enviroment.SetEnviroment("58D772128EB247E5A34F527B5CA76325");
     }
 
     @Test
@@ -41,7 +41,7 @@ public class PlanTest extends TestCase {
         // 5 Anual
         // 6 Semanal
         // 7 Diário
-        plan.setPlanFrequence(1);
+        plan.setPlanFrequence(2);
 
         // Nome do plano
         plan.setName("Teste SDK JAVA");
@@ -88,11 +88,11 @@ public class PlanTest extends TestCase {
     @Test
     public void testDisable() {
 
-        int Id = 4017;
+        int Id = 100000;
 
         ResponseSafe2PayRecurrence response = PlanAPI.DisablePlan(Id);
 
-        assertEquals(response.success, false);
+        assertEquals(false,response.success);
 
         assertNotNull(response);
     }

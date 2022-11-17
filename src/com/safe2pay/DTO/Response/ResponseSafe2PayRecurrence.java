@@ -4,5 +4,8 @@ public class ResponseSafe2PayRecurrence {
     
     public boolean success;
     public Object data;
+    public int statusCode;
+    public String title;
+    public Object Errors;
 }
 

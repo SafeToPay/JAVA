@@ -28,7 +28,7 @@ public class MarketplaceTest extends TestCase {
     protected void setUp() {
 
         Config enviroment = new Config();
-        enviroment.SetEnviroment("58D772128EB247E5A34F527B5CA76325");
+        enviroment.SetEnviroment("x-api-key");
     }
 
     @Test
@@ -265,7 +265,7 @@ Merchant merchant = new Merchant();
     @Test
     public void testDelete() {
 
-        int Id = 828;
+        int Id = 117037;
 
         ResponseSafe2Pay response = MarketplaceAPI.Delete(Id);
 

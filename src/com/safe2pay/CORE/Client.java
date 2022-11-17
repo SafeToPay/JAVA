@@ -5,6 +5,7 @@
  */
 package com.safe2pay.CORE;
 
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,6 +35,7 @@ import java.util.stream.Stream;
 public final class Client {
 
     private static String apiKey = "";
+
 
     public static void SetEnviroment(String Token) {
         apiKey = Token;
@@ -110,7 +112,7 @@ public final class Client {
     }
 
     public static ResponseSafe2PayRecurrence HttpClient(String method, String endpoint, Object body, boolean IsPayment,
-            String serviceName) {
+                                                        String serviceName) {
 
         try {
 
@@ -147,7 +149,7 @@ public final class Client {
                     try (OutputStream os = con.getOutputStream()) {
                         byte[] input = payload.getBytes("utf-8");
                         os.write(input, 0, input.length);
-                        // con.setRequestProperty("Content-Length", Integer.toString(input.length));
+                        //con.setRequestProperty("Content-Length", Integer.toString(input.length));
                     }
                 }
             }
@@ -221,25 +223,25 @@ public final class Client {
         return retorno;
     }
 
-    public static ResponseSafe2PayRecurrence httppatch(String method, String endpoint, Object body, boolean IsPayment,
-            String serviceName) {
+
+    public static ResponseSafe2PayRecurrence httppatch(String method, String endpoint, String body, boolean IsPayment,
+                                                       String serviceName) {
         try {
 
             System.setProperty("https.protocols", "TLSv1.2");
-            // Adiciona o WebMethod
 
             // Adiciona os Headers da requisição
             HttpRequest request = HttpRequest.newBuilder()
-                    .method("PATCH", HttpRequest.BodyPublishers.ofString(""))
+                    .method("PATCH", HttpRequest.BodyPublishers.ofString(body))
                     .uri(URI.create(GetBaseUrl(IsPayment, serviceName).concat(endpoint)))
                     .header("Content-Type", "application/json; charset=UTF-8")
                     .header("Accept", "application/json")
                     .header("X-API-KEY", GetEnviroment())
                     .build();
-            HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
-                    HttpResponse.BodyHandlers.ofString());
 
-            return ResponseDeserializeRecurrence(response);
+            HttpResponse<String> responsehhtp = HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
+
+            return ResponseDeserializeRecurrence(responsehhtp);
         } catch (Exception e) {
 
             System.err.println(e.getMessage());

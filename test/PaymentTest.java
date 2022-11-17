@@ -30,7 +30,7 @@ public class PaymentTest extends TestCase {
     protected void setUp() {
 
         Config enviroment = new Config();
-        enviroment.SetEnviroment("x-api-key");
+        enviroment.SetEnviroment("58D772128EB247E5A34F527B5CA76325");
     }
 
     @Test

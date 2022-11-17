@@ -12,11 +12,11 @@ import com.safe2pay.DTO.Response.ResponseSafe2PayRecurrence;
 import java.text.MessageFormat;
 
 /**
- * '''''
- * 
+ *'''''
  * @author lucas.silva
  */
 public class PlanAPI {
+
 
     public static ResponseSafe2PayRecurrence Add(Plan plan) {
 
@@ -26,25 +26,20 @@ public class PlanAPI {
 
     public static ResponseSafe2PayRecurrence DisablePlan(int Id) {
 
-        ResponseSafe2PayRecurrence response = Client.httppatch("PATCH",
-                MessageFormat.format("V1/Plans/{0}/Disable", (Integer.toString(Id))), null, false, "services");
+        ResponseSafe2PayRecurrence response = Client.httppatch("PATCH", MessageFormat.format("V1/Plans/{0}/Disable", (Integer.toString(Id))),null, false,"services");
         return response;
     }
 
     public static ResponseSafe2PayRecurrence Get(int Id) {
 
-        ResponseSafe2PayRecurrence response = Client.HttpClient("GET", "V1/Plans/".concat(Integer.toString(Id)), null,
-                false, "services");
+        ResponseSafe2PayRecurrence response = Client.HttpClient("GET", "V1/Plans/".concat(Integer.toString(Id)), null, false,"services");
         return response;
     }
+    
+      public static ResponseSafe2PayRecurrence List(String Name, boolean IsEnabled, int PageNumber,int Rowspage) {
 
-    public static ResponseSafe2PayRecurrence List(String Name, boolean IsEnabled, int PageNumber, int Rowspage) {
-
-        ResponseSafe2PayRecurrence response = Client.HttpClient("GET",
-                MessageFormat.format("V1/Plans?Name={0}&IsEnabled={1}&PageNumber={2}&RowsPerPage={3}", Name, IsEnabled,
-                        PageNumber, Rowspage),
-                null, false, "services");
+          ResponseSafe2PayRecurrence response = Client.HttpClient("GET",  MessageFormat.format("V1/Plans?Name={0}&IsEnabled={1}&PageNumber={2}&RowsPerPage={3}", Name, IsEnabled, PageNumber,Rowspage), null, false,"services");
         return response;
     }
-
+       
 }
