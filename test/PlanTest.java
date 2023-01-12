@@ -31,7 +31,7 @@ public class PlanTest extends TestCase {
         // Code Tipo
         // 1 Personalizado
         // 2 Fixo
-        plan.setPlanOption(2);
+        plan.setPlanOption(1);
         // Frequencia do plano
         // Code Name
         // 1 Mensal
