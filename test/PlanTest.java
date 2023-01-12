@@ -20,7 +20,7 @@ public class PlanTest extends TestCase {
     protected void setUp() {
 
         Config enviroment = new Config();
-        enviroment.SetEnviroment("58D772128EB247E5A34F527B5CA76325");
+        enviroment.SetEnviroment("x-api-key");
     }
 
     @Test
@@ -31,7 +31,7 @@ public class PlanTest extends TestCase {
         // Code Tipo
         // 1 Personalizado
         // 2 Fixo
-        plan.setPlanOption(1);
+        plan.setPlanOption(2);
         // Frequencia do plano
         // Code Name
         // 1 Mensal
@@ -92,7 +92,7 @@ public class PlanTest extends TestCase {
 
         ResponseSafe2PayRecurrence response = PlanAPI.DisablePlan(Id);
 
-        assertEquals(false,response.success);
+        assertEquals(false, response.success);
 
         assertNotNull(response);
     }
