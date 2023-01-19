@@ -17,11 +17,7 @@ resources:
 pool:
   vmImage: 'windows-latest'
 
-variables:
- - group: sdks-plugin
-
 stages:
   - template: templates/stages/github-repository-sync.yml@template
     parameters:
-      domain: 'sdks-plugin'
       githubRepositoryName: 'JAVA'
