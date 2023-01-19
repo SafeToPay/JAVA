@@ -12,6 +12,7 @@ resources:
     - repository: template
       type: git
       name: Safe2Pay/yaml-templates
+      ref: refs/heads/features/github-copy
 
 pool:
   vmImage: 'windows-latest'
