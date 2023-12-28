@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ResponseDetail {
 
     @JsonProperty("IdTransaction")
-    public String idTransaction;
+    private String idTransaction;
     @JsonProperty("Status")
-    public Integer status;
+    private Integer status;
     @JsonProperty("Message")
-    public String message;
+    private String message;
     @JsonProperty("Description")
-    public String description;
+    private String description;
 
     public ResponseDetail(String idTransaction, Integer status, String message, String description) {
         this.idTransaction = idTransaction;

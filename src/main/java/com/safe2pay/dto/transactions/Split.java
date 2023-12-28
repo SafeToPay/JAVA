@@ -3,18 +3,31 @@ package com.safe2pay.dto.transactions;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 
+enum EnumTaxType {
+    None,
+    Percentage,
+    Amount
+}
+
+
+enum EnumReceiverType {
+    NONE,
+    MERCHANT,
+    SUBACCOUNT
+}
+
 public class Split {
 
     @JsonProperty("Identity")
-    public String identity;
+    private String identity;
     @JsonProperty("IsPayTax")
-    public boolean isPayTax;
+    private boolean isPayTax;
     @JsonProperty("Amount")
-    public float amount;
+    private float amount;
     @JsonProperty("CodeTaxType")
-    public EnumTaxType codeTaxType;
+    private EnumTaxType codeTaxType;
     @JsonProperty("CodeReceiverType")
-    public EnumReceiverType codeReceiverType;
+    private EnumReceiverType codeReceiverType;
 
     @Builder
     public Split(String identity, boolean isPayTax, float amount, EnumTaxType codeTaxType, EnumReceiverType codeReceiverType) {
@@ -68,18 +81,3 @@ public class Split {
         this.codeReceiverType = codeReceiverType;
     }
 }
-
-
-enum EnumTaxType
-    {
-        None,
-        Percentage,
-        Amount
-    }
-
-    enum EnumReceiverType
-    {
-        NONE,
-        MERCHANT,
-        SUBACCOUNT
-    }

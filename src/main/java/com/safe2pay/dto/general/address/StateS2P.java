@@ -6,13 +6,13 @@ import lombok.Builder;
 public class StateS2P {
 
     @JsonProperty("Id")
-    public int id;
+    private int id;
     @JsonProperty("IdCountry")
-    public int idCountry;
+    private int idCountry;
     @JsonProperty("Initials")
-    public String initials;
+    private String initials;
     @JsonProperty("Name")
-    public Object name;
+    private Object name;
 
     @Builder
     public StateS2P(int id, int idCountry, String initials, Object name) {

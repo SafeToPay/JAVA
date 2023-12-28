@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PixResponseDetail extends ResponseDetail {
 
     @JsonProperty("QrCode")
-    public String qrCode;
+    private String qrCode;
     @JsonProperty("Key")
-    public String key;
+    private String key;
 
     public PixResponseDetail(String idTransaction, Integer status, String message, String description, String qrCode,
                              String key) {
