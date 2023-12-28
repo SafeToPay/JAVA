@@ -11,8 +11,6 @@
 * [x] Pagamentos.
     * [x] Boleto bancário.
     * [x] Cartão de crédito.
-    * [x] Bitcoin.
-    * [x] Cartão de débito.
 
 
 
@@ -36,8 +34,6 @@ A informação da forma de pagamento é dada por meio da propriedade `PaymentMet
 
 1. Boleto Bancário;
 2. Cartão de Crédito;
-3. Bitcoin;
-4. Cartão de Débito
 
 O retorno do envio da transação trará um status para esta, que pode ser igual a:
 
@@ -193,131 +189,6 @@ O retorno do envio da transação trará um status para esta, que pode ser igual
         });
 
         ResponseSafe2Pay response = PaymentAPI.CreditCard(payload);
-// ...
-```
-
-### Criando uma venda com Bitcoin
-
-```java
-        Client.SetEnviroment("x-api-key");
-
-        //Inicializar método de pagamento
-        Transaction payload = new Transaction();
-        //Ambiente de homologação
-        payload.setIsSandbox(true);
-        //Descrição geral 
-        payload.setApplication("Teste SDK JAVA");
-        //Nome do vendedor
-        payload.setVendor("João da Silva");
-        //Url de callback
-        payload.setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
-        //Código da forma de pagamento
-        // 1 - Boleto bancário
-        // 2 - Cartão de crédito
-        // 3 - Criptomoeda
-        // 4 - Cartão de débito 
-        // 10 - Débito em conta 
-        payload.setPaymentMethod("3");
-
-        //Lista de produtos incluídos na cobrança
-        payload.setProducts(new ArrayList<Product>() {
-            {
-                add(new Product("001", "Teste 1", 10, 1.99));
-                add(new Product("002", "Teste 2", 3, 2.50));
-                add(new Product("003", "Teste 3", 7, 1));
-            }
-        });
-
-        //Dados do cliente
-        payload.setCustomer(new Customer() {
-            {
-                setName("João da Silva");
-                setIdentity("54557795000162");
-                setEmail("safe2pay@safe2pay.com.br");
-                setAddress(new Address() {
-                    {
-                        setZipCode("90670090");
-                        setStreet("Logradouro");
-                        setNumber("123");
-                        setDistrict("Higienopolis");
-                        setStateInitials("RS");
-                        setCityName("Porto Alegre");
-                        setCountryName("Brasil");
-                    }
-                });
-            }
-        });
-
-        ResponseSafe2Pay response = PaymentAPI.CryptoCurrency(payload);
-
-// ...
-```
-
-### Criando uma venda com cartão de débito
-
-```java
-        Client.SetEnviroment("x-api-key");
-
-        //Inicializar método de pagamento
-        Transaction payload = new Transaction();
-        //Ambiente de homologação
-        payload.setIsSandbox(true);
-        //Descrição geral 
-        payload.setApplication("Teste SDK JAVA");
-        //Nome do vendedor
-        payload.setVendor("João da Silva");
-        //Url de callback
-        payload.setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
-        //Código da forma de pagamento
-        // 1 - Boleto bancário
-        // 2 - Cartão de crédito
-        // 3 - Criptomoeda
-        // 4 - Cartão de débito 
-        // 10 - Débito em conta 
-        payload.setPaymentMethod("4");
-
-        //Informa o objeto de pagamento
-        //Objeto de pagamento - para boleto bancário
-        payload.setPaymentObject(new CreditCard() {
-            {
-                setHolder("João da Silva");
-                setCardNumber("4024007153763191");
-                setExpirationDate("12/2019");
-                setSecurityCode("241");
-            }
-        });
-
-        //Lista de produtos incluídos na cobrança
-        payload.setProducts(new ArrayList<Product>() {
-            {
-                add(new Product("001", "Teste 1", 10, 1.99));
-                add(new Product("002", "Teste 2", 3, 2.50));
-                add(new Product("003", "Teste 3", 7, 1));
-            }
-        });
-
-        //Dados do cliente
-        payload.setCustomer(new Customer() {
-            {
-                setName("João da Silva");
-                setIdentity("54557795000162");
-                setEmail("safe2pay@safe2pay.com.br");
-                setAddress(new Address() {
-                    {
-                        setZipCode("90670090");
-                        setStreet("Logradouro");
-                        setNumber("123");
-                        setDistrict("Higienopolis");
-                        setStateInitials("RS");
-                        setCityName("Porto Alegre");
-                        setCountryName("Brasil");
-                    }
-                });
-            }
-        });
-
-        ResponseSafe2Pay response = PaymentAPI.DebitCard(payload);
-
 // ...
 ```
 
