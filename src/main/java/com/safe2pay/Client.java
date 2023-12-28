@@ -62,7 +62,6 @@ public final class Client {
                 response.append(inputLine);
             }
             in.close();
-
             final JsonObject responseBase = JsonParser.parseString(response.toString()).getAsJsonObject();
             final boolean hasError = responseBase.get("HasError").getAsBoolean();
             final String responseDetailJson = new Gson().toJson(responseBase.get("ResponseDetail"));
@@ -72,7 +71,6 @@ public final class Client {
             responseSafe2Pay.setResponseDetail(responseDetail);
             return responseSafe2Pay;
         } catch (Exception ignored) {
-            ignored.printStackTrace();
         }
         return null;
     }

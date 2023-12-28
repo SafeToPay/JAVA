@@ -1,10 +1,9 @@
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.safe2pay.api.PaymentAPI;
 import com.safe2pay.Client;
+import com.safe2pay.api.PaymentAPI;
+import com.safe2pay.dto.general.ProductS2P;
 import com.safe2pay.dto.general.address.AddressS2P;
 import com.safe2pay.dto.general.customer.CustomerS2P;
-import com.safe2pay.dto.general.ProductS2P;
 import com.safe2pay.dto.payment.BankSlip;
 import com.safe2pay.dto.payment.CreditCard;
 import com.safe2pay.dto.response.ResponseSafe2Pay;
@@ -35,9 +34,7 @@ public class PaymentTest extends TestCase {
         // Código da forma de pagamento
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
-        // 3 - Criptomoeda
-        // 4 - Cartão de débito
-        // 10 - Débito em conta
+        // 6 - PIX
         payload.setPaymentMethod("1");
 
         // Informa o objeto de pagamento
@@ -109,9 +106,7 @@ public class PaymentTest extends TestCase {
         // Código da forma de pagamento
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
-        // 3 - Criptomoeda
-        // 4 - Cartão de débito
-        // 10 - Débito em conta
+        // 6 - PIX
         payload.setPaymentMethod("2");
 
         // Informa o objeto de pagamento
