@@ -2,9 +2,8 @@ package com.safe2pay.DTO.Transactions;
 
 import com.safe2pay.DTO.Customer.Customer;
 import com.safe2pay.DTO.General.Product;
-import com.safe2pay.DTO.Merchant.Merchant;
 import com.safe2pay.DTO.Payment.PaymentMethod;
-import com.safe2pay.DTO.Tax.TaxType;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,8 +13,6 @@ public class Base {
     private int IdTransaction;
     private PaymentMethod PaymentMethod;
     private TransactionStatus TransactionStatus;
-    private Merchant Merchant;
-    private TaxType TaxType;
     private Customer Customer;
     private float Amount;
     private float TaxValue;
@@ -70,22 +67,6 @@ public class Base {
 
     public void setTransactionStatus(TransactionStatus TransactionStatus) {
         this.TransactionStatus = TransactionStatus;
-    }
-
-    public Merchant getMerchant() {
-        return Merchant;
-    }
-
-    public void setMerchant(Merchant Merchant) {
-        this.Merchant = Merchant;
-    }
-
-    public TaxType getTaxType() {
-        return TaxType;
-    }
-
-    public void setTaxType(TaxType TaxType) {
-        this.TaxType = TaxType;
     }
 
     public Customer getCustomer() {
