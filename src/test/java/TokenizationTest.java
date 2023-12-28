@@ -1,9 +1,10 @@
-import com.safe2pay.API.TokenizationAPI;
-import com.safe2pay.CORE.Client;
-import com.safe2pay.DTO.Payment.CreditCard;
-import com.safe2pay.DTO.Response.ResponseSafe2Pay;
+import com.google.gson.GsonBuilder;
+import com.safe2pay.api.TokenizationAPI;
+import com.safe2pay.Client;
+import com.safe2pay.dto.payment.CreditCard;
+import com.safe2pay.dto.response.ResponseSafe2Pay;
+import com.safe2pay.dto.response.details.TokenizationResponseDetail;
 import junit.framework.TestCase;
-import org.junit.Test;
 
 public class TokenizationTest extends TestCase {
 
@@ -18,8 +19,9 @@ public class TokenizationTest extends TestCase {
         credit.setExpirationDate("12/2019");
         credit.setSecurityCode("241");
 
-        final ResponseSafe2Pay response = TokenizationAPI.create(credit);
-        assertFalse(response.HasError);
+        final ResponseSafe2Pay<TokenizationResponseDetail> response = TokenizationAPI.create(credit);
+        System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(response.getResponseDetail()));
+        assertFalse(response.isHasError());
         assertNotNull(response);
     }
 }

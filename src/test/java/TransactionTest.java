@@ -1,6 +1,8 @@
-import com.safe2pay.API.TransactionAPI;
-import com.safe2pay.CORE.Client;
-import com.safe2pay.DTO.Response.ResponseSafe2Pay;
+import com.google.gson.GsonBuilder;
+import com.safe2pay.api.TransactionAPI;
+import com.safe2pay.Client;
+import com.safe2pay.dto.response.ResponseSafe2Pay;
+import com.safe2pay.dto.response.details.TransactionResponseDetail;
 import junit.framework.TestCase;
 
 public class TransactionTest extends TestCase {
@@ -11,8 +13,9 @@ public class TransactionTest extends TestCase {
 
     public void testGet() {
         int Id = 38737074;
-        final ResponseSafe2Pay response = TransactionAPI.Get(Id);
-        assertFalse(response.HasError);
+        final ResponseSafe2Pay<TransactionResponseDetail> response = TransactionAPI.Get(Id);
+        System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(response.getResponseDetail()));
+        assertFalse(response.isHasError());
         assertNotNull(response);
     }
 

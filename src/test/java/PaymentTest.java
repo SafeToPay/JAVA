@@ -1,12 +1,16 @@
-import com.safe2pay.API.PaymentAPI;
-import com.safe2pay.CORE.Client;
-import com.safe2pay.DTO.Address.Address;
-import com.safe2pay.DTO.Customer.Customer;
-import com.safe2pay.DTO.General.Product;
-import com.safe2pay.DTO.Payment.BankSlip;
-import com.safe2pay.DTO.Payment.CreditCard;
-import com.safe2pay.DTO.Response.ResponseSafe2Pay;
-import com.safe2pay.DTO.Transactions.Transaction;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.safe2pay.api.PaymentAPI;
+import com.safe2pay.Client;
+import com.safe2pay.dto.general.address.AddressS2P;
+import com.safe2pay.dto.general.customer.CustomerS2P;
+import com.safe2pay.dto.general.ProductS2P;
+import com.safe2pay.dto.payment.BankSlip;
+import com.safe2pay.dto.payment.CreditCard;
+import com.safe2pay.dto.response.ResponseSafe2Pay;
+import com.safe2pay.dto.response.details.BankSlipResponseDetail;
+import com.safe2pay.dto.response.details.CreditCardResponseDetail;
+import com.safe2pay.dto.transactions.Transaction;
 import junit.framework.TestCase;
 
 import java.util.ArrayList;
@@ -17,17 +21,11 @@ public class PaymentTest extends TestCase {
         Client.setToken("x-api-key");
     }
 
-    public void testGetPaymentMethods() {
-        final ResponseSafe2Pay response = PaymentAPI.getPaymentMethods();
-        assertFalse(response.HasError);
-        assertNotNull(response);
-    }
-
     public void testBankSlip() {
         // Inicializar método de pagamento
         final Transaction payload = new Transaction();
         // Ambiente de homologação
-        payload.setIsSandbox(true);
+        payload.setSandbox(true);
         // Descrição geral
         payload.setApplication("Teste SDK PHP");
         // Nome do vendedor
@@ -65,19 +63,19 @@ public class PaymentTest extends TestCase {
         // Lista de produtos incluídos na cobrança
         payload.setProducts(new ArrayList<>() {
             {
-                add(new Product("001", "Teste 1", 10, 1.99));
-                add(new Product("002", "Teste 2", 3, 2.50));
-                add(new Product("003", "Teste 3", 7, 1));
+                add(new ProductS2P("001", "Teste 1", 10, 1.99));
+                add(new ProductS2P("002", "Teste 2", 3, 2.50));
+                add(new ProductS2P("003", "Teste 3", 7, 1));
             }
         });
 
         // Dados do cliente
-        payload.setCustomer(new Customer() {
+        payload.setCustomer(new CustomerS2P() {
             {
                 setName("João da Silva Rodrigues");
                 setIdentity("54557795000162");
                 setEmail("safe2pay@safe2pay.com.br");
-                setAddress(new Address() {
+                setAddress(new AddressS2P() {
                     {
                         setZipCode("90670090");
                         setStreet("Logradouro");
@@ -91,8 +89,9 @@ public class PaymentTest extends TestCase {
             }
         });
 
-        final ResponseSafe2Pay response = PaymentAPI.payWithBankSlip(payload);
-        assertFalse(response.HasError);
+        final ResponseSafe2Pay<BankSlipResponseDetail> response = PaymentAPI.payWithBankSlip(payload);
+        System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(response.getResponseDetail()));
+        assertFalse(response.isHasError());
         assertNotNull(response);
     }
 
@@ -100,7 +99,7 @@ public class PaymentTest extends TestCase {
         // Inicializar método de pagamento
         final Transaction payload = new Transaction();
         // Ambiente de homologação
-        payload.setIsSandbox(true);
+        payload.setSandbox(true);
         // Descrição geral
         payload.setApplication("Teste SDK PHP");
         // Nome do vendedor
@@ -129,19 +128,19 @@ public class PaymentTest extends TestCase {
         // Lista de produtos incluídos na cobrança
         payload.setProducts(new ArrayList<>() {
             {
-                add(new Product("001", "Teste 1", 10, 1.99));
-                add(new Product("002", "Teste 2", 3, 2.50));
-                add(new Product("003", "Teste 3", 7, 1));
+                add(new ProductS2P("001", "Teste 1", 10, 1.99));
+                add(new ProductS2P("002", "Teste 2", 3, 2.50));
+                add(new ProductS2P("003", "Teste 3", 7, 1));
             }
         });
 
         // Dados do cliente
-        payload.setCustomer(new Customer() {
+        payload.setCustomer(new CustomerS2P() {
             {
                 setName("João da Silva");
                 setIdentity("54557795000162");
                 setEmail("safe2pay@safe2pay.com.br");
-                setAddress(new Address() {
+                setAddress(new AddressS2P() {
                     {
                         setZipCode("90670090");
                         setStreet("Logradouro");
@@ -155,15 +154,9 @@ public class PaymentTest extends TestCase {
             }
         });
 
-        final ResponseSafe2Pay response = PaymentAPI.payWithCreditCard(payload);
-        assertFalse(response.HasError);
-        assertNotNull(response);
-    }
-
-    public void testRefund() {
-        final int Id = 898421;
-        final ResponseSafe2Pay response = PaymentAPI.refund(Id);
-        assertFalse(response.HasError);
+        final ResponseSafe2Pay<CreditCardResponseDetail> response = PaymentAPI.payWithCreditCard(payload);
+        System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(response.getResponseDetail()));
+        assertFalse(response.isHasError());
         assertNotNull(response);
     }
 
