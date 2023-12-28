@@ -62,7 +62,7 @@ public final class Client {
                 response.append(inputLine);
             }
             in.close();
-
+            System.out.println(response);
             final JsonObject responseBase = JsonParser.parseString(response.toString()).getAsJsonObject();
             final boolean hasError = responseBase.get("HasError").getAsBoolean();
             final String responseDetailJson = new Gson().toJson(responseBase.get("ResponseDetail"));
