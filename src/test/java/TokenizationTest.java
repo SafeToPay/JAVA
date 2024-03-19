@@ -1,4 +1,6 @@
-import com.google.gson.GsonBuilder;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safe2pay.api.TokenizationAPI;
 import com.safe2pay.Client;
 import com.safe2pay.dto.payment.CreditCard;
@@ -20,7 +22,11 @@ public class TokenizationTest extends TestCase {
         credit.setSecurityCode("241");
 
         final ResponseSafe2Pay<TokenizationResponseDetail> response = TokenizationAPI.create(credit);
-        System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(response.getResponseDetail()));
+        try {
+            System.out.println(new ObjectMapper().writeValueAsString(response.getResponseDetail()));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         assertFalse(response.isHasError());
         assertNotNull(response);
     }

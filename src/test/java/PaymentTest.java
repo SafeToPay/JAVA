@@ -1,4 +1,5 @@
-import com.google.gson.GsonBuilder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safe2pay.Client;
 import com.safe2pay.api.PaymentAPI;
 import com.safe2pay.dto.general.ProductS2P;
@@ -87,7 +88,11 @@ public class PaymentTest extends TestCase {
         });
 
         final ResponseSafe2Pay<BankSlipResponseDetail> response = PaymentAPI.payWithBankSlip(payload);
-        System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(response.getResponseDetail()));
+        try {
+            System.out.println(new ObjectMapper().writeValueAsString(response.getResponseDetail()));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         assertFalse(response.isHasError());
         assertNotNull(response);
     }
@@ -150,7 +155,11 @@ public class PaymentTest extends TestCase {
         });
 
         final ResponseSafe2Pay<CreditCardResponseDetail> response = PaymentAPI.payWithCreditCard(payload);
-        System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(response.getResponseDetail()));
+        try {
+            System.out.println(new ObjectMapper().writeValueAsString(response.getResponseDetail()));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         assertFalse(response.isHasError());
         assertNotNull(response);
     }

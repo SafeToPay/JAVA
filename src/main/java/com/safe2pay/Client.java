@@ -3,10 +3,8 @@ package com.safe2pay;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.safe2pay.dto.response.ResponseSafe2Pay;
 
 import java.io.BufferedReader;
@@ -63,9 +61,9 @@ public final class Client {
                 response.append(inputLine);
             }
             in.close();
-            final JsonObject responseBase = JsonParser.parseString(response.toString()).getAsJsonObject();
-            final boolean hasError = responseBase.get("HasError").getAsBoolean();
-            final String responseDetailJson = new Gson().toJson(responseBase.get("ResponseDetail"));
+            final JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
+            final boolean hasError = jsonNode.get("HasError").asBoolean();
+            final String responseDetailJson = jsonNode.get("ResponseDetail").toString();
             final ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             final T responseDetail = new ObjectMapper().readValue(responseDetailJson, clazz);
